@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 route::get('/channels', function(){
@@ -28,3 +28,5 @@ route::get('/login', function(){
 route::get('/register', function(){
     return view('register');
 });
+
+route::get('/User', 'UserController@index');
