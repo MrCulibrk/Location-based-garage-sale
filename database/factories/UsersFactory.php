@@ -22,9 +22,9 @@ class UsersFactory extends Factory
     public function definition()
     {
         return [
-            'name' =>$faker->name,
-            'email' =>$faker->email,
-            'password' =>$faker->email,
+            'name' =>$this->faker->name,
+            'email' =>$this->faker->email,
+            'password' =>$this->faker->email,
         ];
     }
 }
