@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //return'hello world';
-    return view('welcome');
+    return view('index');
 });
 
 route::get('/channels', function(){
@@ -30,4 +30,4 @@ route::get('/register', function(){
     return view('register');
 });
 
-route::get('/Users', 'UserController@index');
+route::get('/', [UserController::class, 'index']);
