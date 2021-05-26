@@ -13,4 +13,17 @@ class UserController extends Controller
         return view('index', $data);
 
     }
+
+    // public function show($user){
+    //     $user = DB::table('users')->where('id', $user)->first();
+    //     dd($user);
+
+    // }
+
+    public function show(\App\Models\User $user){
+        $user = $user;
+        dd($user);
+    }
+
+    
 }

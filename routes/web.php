@@ -31,3 +31,4 @@ route::get('/register', function(){
 });
 
 route::get('/', [UserController::class, 'index']);
+route::get('/{user}', [UserController::class, 'show']);
