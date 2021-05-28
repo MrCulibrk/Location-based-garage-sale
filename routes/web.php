@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +30,6 @@ route::get('/register', function(){
     return view('register');
 });
 
-route::get('/', [UserController::class, 'index']);
-route::get('/{user}', [UserController::class, 'show']);
+route::get('/', [ProductsController::class, 'index']);
+// route::get('/{product}', [UserController::class, 'show']);
+
