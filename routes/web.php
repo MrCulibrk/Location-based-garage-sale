@@ -20,14 +20,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-route::get('/channels', function(){
-    return view('channels');
-});
+Route::get('/', [ProductsController::class, 'index']);
 
-route::get('/', [ProductsController::class, 'index']);
-
-route::get('/login', 'App\http\Controllers\UserController@login');
-route::post('/login', 'App\http\Controllers\UserController@handleLogin');
+Route::get('/login', 'App\http\Controllers\UserController@login');
+Route::post('/login', 'App\http\Controllers\UserController@handleLogin');
 Route::get('/register', 'App\Http\Controllers\UserController@register');
 Route::post('/register', 'App\Http\Controllers\UserController@handleRegister');
+
+// Route::get('/logout', 'App\Http\Controllers\UserController@logout');
+Route::get('/logout', [UserController::class, 'logout']);
+
+Route::get('/profile', 'App\Http\Controllers\UserController@profile');
 
