@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +24,10 @@ route::get('/channels', function(){
     return view('channels');
 });
 
-route::get('/login', function(){
-    return view('login');
-});
-
-route::get('/register', function(){
-    return view('register');
-});
-
 route::get('/', [ProductsController::class, 'index']);
-// route::get('/{product}', [UserController::class, 'show']);
+
+route::get('/login', 'App\http\Controllers\UserController@login');
+route::post('/login', 'App\http\Controllers\UserController@handleLogin');
+Route::get('/register', 'App\Http\Controllers\UserController@register');
+Route::post('/register', 'App\Http\Controllers\UserController@handleRegister');
 
