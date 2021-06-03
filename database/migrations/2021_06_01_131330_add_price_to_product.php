@@ -15,6 +15,9 @@ class AddPriceToProduct extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->integer('price');
+            $table->string('Pics')->nullable();
+            $table->string('type')->nullable();
+            $table->boolean('active');
         });
     }
 

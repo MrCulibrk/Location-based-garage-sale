@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -16,7 +19,7 @@ class UserController extends Controller
     }
 
     public function handleRegister(Request $request){
-        $user = new \App\Models\User();
+        $user = new User();
 
         //check for dubble password
         $email = $user::where('email', $request->input('email'))->first();
@@ -64,6 +67,39 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/');
     }
+    public function profile()
+    {
+        return view('profile');
+    }
 
+    public function profileUser()
+    {
+        
+        $data['user'] = user::where('id', 'users')->first();
+
+        return view('profile', $data);
+
+        
+    }
+    public function uploadSettings(Request $request)
+    {
+        // Upload profile picture
+        if ($request->hasFile('image')) {
+            $filename = $request->image->getClientOriginalName();
+            if (Auth::user()->profilePics) {
+                Storage::delete('/public/images/' . Auth::user()->profilePics);
+            }
+            $request->image->storeAs('images', $filename, 'public');
+            User::where('id', Auth::user()->id)
+                ->update(['profilePics' => $filename]);
+        }
+
+        return redirect('/profile');
     
+    }
+
+    public function profileProducts(){
+        $products['products'] = User::find(Auth::id())->products()->get();
+        return view('profile', $products);
+    }
 }

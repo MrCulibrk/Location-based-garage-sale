@@ -30,5 +30,6 @@ Route::post('/register', 'App\Http\Controllers\UserController@handleRegister');
 // Route::get('/logout', 'App\Http\Controllers\UserController@logout');
 Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/profile', 'App\Http\Controllers\UserController@profile');
-
+Route::get('/profile', 'App\Http\Controllers\UserController@profileUser');
+Route::get('/profile', 'App\Http\Controllers\UserController@profileProducts');
+Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
