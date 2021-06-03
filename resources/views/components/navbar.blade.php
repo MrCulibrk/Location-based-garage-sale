@@ -10,13 +10,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
-
             @if(Auth::check())            
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
+                <a class="nav-link" href="/profile">{{ Auth::user()->name }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile">{{ Auth::user()->firstname }}</a>
+                <a class="nav-link" href="/sell">new sell</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Log out</a>

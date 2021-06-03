@@ -25,7 +25,8 @@ class ProductsFactory extends Factory
             'productName' =>$this->faker->name(),
             'description' =>$this->faker->realText($maxNbChars = 200, $indexSize = 2),
             'location' =>$this->faker->city(),
-            'user_id' =>$this->faker->numberBetween($min = 0, $max = 100)
+            'user_id' =>$this->faker->numberBetween($min = 0, $max = 100),
+            'Pics' =>$this->imageUrl($width = 800, $height = 600, 'cats')
         ];
     }
 }

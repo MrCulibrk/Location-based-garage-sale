@@ -33,3 +33,6 @@ Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/profile', 'App\Http\Controllers\UserController@profileUser');
 Route::get('/profile', 'App\Http\Controllers\UserController@profileProducts');
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
+
+Route::get('/sell', 'App\Http\Controllers\ProductsController@create')->middleware('auth');
+Route::post('/upload', 'App\Http\Controllers\ProductsController@store')->middleware('auth');
