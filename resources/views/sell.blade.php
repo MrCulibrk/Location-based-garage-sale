@@ -22,7 +22,7 @@ sell new item
                 <input type="text" name="productName" id="productName" class="form-control">
             </div>
         </div>
-        
+
         <div class="form-group row">
             <label for="description" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
@@ -34,6 +34,9 @@ sell new item
             <label for="location" class="col-sm-2 col-form-label">location</label>
             <div class="col-sm-10">
                 <input type="text" name="location" id="location" class="form-control">
+                <input type="text" name="geolng" class="geolng" value="" >
+                <input type="text" name="geolat" class="geolat" value="" >
+                
             </div>
         </div>
 
@@ -43,6 +46,7 @@ sell new item
                 <input type="text" name="price" id="price" class="form-control">
             </div>
         </div>
+       
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Upload a picture of the product</label>
             <div class="col-sm-10">
@@ -50,8 +54,29 @@ sell new item
             </div>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary float-right">
-        
+
     </form>
+    <button onclick="updateLocation()">Click</button>
 </div>
+
+<script> 
+    function updateLocation() {
+        
+        var geolng = document.querySelector(".geolng");
+        var geolat = document.querySelector(".geolat");
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(changePosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+
+
+        function changePosition(position) {
+            geolng.value = position.coords.longitude;
+            geolat.value = position.coords.latitude;
+        }
+    }
+</script>
 
 @endsection

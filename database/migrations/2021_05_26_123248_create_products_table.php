@@ -18,8 +18,11 @@ class CreateProductsTable extends Migration
             $table->string('productName');
             $table->text('description');
             $table->text('location');
+            $table->float('geolng', 8, 5);
+            $table->float('geolat', 8, 5);
             $table->integer('user_id');
             $table->timestamps();
+            
         });
     }
 

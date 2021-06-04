@@ -27,10 +27,14 @@
     </form>
 
     @foreach( $products as $product )
-        <h3><a href="{{ $product->id }}">{{ $product->productName }}</a></h3>
+    <a href="updateProduct/{{ $product->id }}">change post</a>
+        <h3>{{ $product->productName }}</h3>
+        <p>{{ $product->price }}&euro;</p>
         <p>{{ $product->description }}</p>
+        <img src="{{ $product->Pics }}" alt="{{ $product->productName }} pictures">
         <p>{{ $product->location }}</p>
         <p>Created at: {{ $product->created_at }}</p>
+
     @endforeach     
 </div>
 
