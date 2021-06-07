@@ -23,7 +23,7 @@
 
 <form action="/buy" method="POST">
 {{ csrf_field() }}
-    <h3><a href="{{ $product->id }}">{{ $product->productName }}</a></h3>
+    <h3>{{ $product->productName }}</h3>
     <p>{{ $product->price }} &euro;</p>
     <p>{{ $product->description }}</p>
     <img src="{{ asset('/storage/images/' .  $product->Pics )}}" alt="{{ $product->productName }} picture">
