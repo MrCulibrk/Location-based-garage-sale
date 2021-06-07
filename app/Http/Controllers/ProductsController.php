@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
 
@@ -31,8 +33,28 @@ class ProductsController extends Controller
 
     public function updateProduct(Request $request)
     {
-        Products::where('id', $request)->update(['productName' => $request->input('productName'),'description' => $request->input('description'),'location' => $request->input('location'),'location' => $request->input('location')]);
+        
+        $data =Products::find( $request->id);
+        $data->productName = $request->input('productName');
+        $data->description = $request->input('description');
+        $data->geolat = $request->input('geolat');
+        $data->geolng = $request->input('geolng');
+        $data->price = $request->input('price');
+
+        if ($request->hasFile('image')) {
+            if ($data->Pics) {
+                Storage::delete('/public/images/' . $data->Pics);
+            }
+            $filename = $request->input('productName').rand(100,100000).'.'.$request->file('image')->extension();          
+            
+            $request->file('image')->storeAs('images', $filename, 'public');
+            $data->Pics = $filename;
+            
+        }
+        $data->save();
         return redirect('profile');
+
+        
     }
 
     public function store(Request $request)
@@ -42,20 +64,23 @@ class ProductsController extends Controller
         // Set object properties from the user input
         $product->productName = $request->input('productName');
         $product->description = $request->input('description');
-        $product->location = $request->input('location');
         $product->geolat = $request->input('geolat');
         $product->geolng = $request->input('geolng');
+        $product->type = $request->input('category');
         $product->price = $request->input('price');
         $product->user_id = $user->id;
         $product->active = 0;
         
-        if ($pic= $request->hasFile('image')) {
-            $filename = $request->image->getClientOriginalName();
-            if($request->move('images', $filename)){
-                $product->Pics = $request->input($filename);
-            }    
+        if ($request->hasFile('image')) {
+            
+            $filename = $request->input('productName').rand(100,100000).'.'.$request->file('image')->extension();          
+            
+            $request->file('image')->storeAs('images', $filename, 'public');
+            $product->Pics = $filename;
+            
         }
-
+        
+        
         $product->save();
         
         return redirect('profile');

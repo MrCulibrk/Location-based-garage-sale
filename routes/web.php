@@ -35,7 +35,7 @@ Route::get('/profile', 'App\Http\Controllers\UserController@profileProducts');
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
 
 Route::get('/sell', 'App\Http\Controllers\ProductsController@create')->middleware('auth');
-Route::post('/upload', 'App\Http\Controllers\ProductsController@store')->middleware('auth');
+Route::post('/uploadProducts', 'App\Http\Controllers\ProductsController@store')->middleware('auth');
 
 Route::get('/updateProduct/{id}', 'App\http\Controllers\productsController@show');
 Route::post('/buy', 'App\http\Controllers\productsController@buy');

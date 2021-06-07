@@ -85,14 +85,18 @@ class UserController extends Controller
     {
         // Upload profile picture
         if ($request->hasFile('image')) {
+            
             $filename = $request->image->getClientOriginalName();
             if (Auth::user()->profilePics) {
                 Storage::delete('/public/images/' . Auth::user()->profilePics);
             }
+            
+
             $request->image->storeAs('images', $filename, 'public');
             User::where('id', Auth::user()->id)
                 ->update(['profilePics' => $filename]);
         }
+        
 
         return redirect('/profile');
     

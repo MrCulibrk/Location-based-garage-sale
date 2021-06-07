@@ -26,8 +26,7 @@
     <h3><a href="{{ $product->id }}">{{ $product->productName }}</a></h3>
     <p>{{ $product->price }} &euro;</p>
     <p>{{ $product->description }}</p>
-    <img src="{{ $product->Pics }}" alt="{{ $product->productName }} picture">
-    <p>{{ $product->location }}</p>
+    <img src="{{ asset('/storage/images/' .  $product->Pics )}}" alt="{{ $product->productName }} picture">
     <p>Created at: {{ $product->created_at }}</p>
     <input type="text" name="product_id" value="{{ $product->id }}" hidden>     
     <input type="submit" value="buy"  class="btn btn-primary float-right">

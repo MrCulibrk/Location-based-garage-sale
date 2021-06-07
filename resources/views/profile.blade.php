@@ -31,7 +31,7 @@
         <h3>{{ $product->productName }}</h3>
         <p>{{ $product->price }}&euro;</p>
         <p>{{ $product->description }}</p>
-        <img src="{{ $product->Pics }}" alt="{{ $product->productName }} pictures">
+        <img src="{{asset('/storage/images/' . $product->Pics) }}" alt="{{ $product->productName }} pictures" width="100px">
         <p>{{ $product->location }}</p>
         <p>Created at: {{ $product->created_at }}</p>
 
